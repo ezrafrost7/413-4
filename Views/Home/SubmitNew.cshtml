@@ -2,4 +2,28 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewBag.Title = "Submit a New Restaurant";
 }
+@model _413_4.Models.RestSubmit
+
+<!--form so that you can submit a new restaurant to the webpage-->
+<form asp-action="SubmitNew" method="post">
+    <div>
+        <label asp-for="PersonName">Your Name</label><br />
+        <input asp-for="PersonName" />
+    </div>
+    <div>
+        <label asp-for="RestName">Restaurant Name</label><br />
+        <input asp-for="RestName" />
+    </div>
+    <div>
+        <label asp-for="FavDish">What's your favorite dish?</label><br />
+        <input asp-for="FavDish" />
+    </div>
+    <div>
+        <label asp-for="RestPhone">What is the restaurant phone number?</label><br />
+        <input asp-for="RestPhone" />
+    </div>
+    <div asp-validation-summary="All"></div>
+    <button type="submit">Submit your restaurant</button>
+</form>

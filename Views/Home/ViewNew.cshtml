@@ -2,4 +2,33 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewBag.Title = "View Submissions";
 }
+@model IEnumerable<_413_4.Models.RestSubmit>
+<div>
+
+    <h2>View your restaurant submissions</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Submitter's Name</th>
+                <th>Restaurant Name</th>
+                <th>Submitter's Favorite Dish</th>
+                <th>Restaurant Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (_413_4.Models.RestSubmit r in Model)
+            {
+                <tr>
+                    <td>@r.PersonName</td>
+                    <td>@r.RestName</td>
+                    <td>@r.FavDish</td>
+                    <td>@r.RestPhone</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
