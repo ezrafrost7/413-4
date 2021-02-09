@@ -21,7 +21,16 @@ namespace _413_4.Controllers
         //controller to view the home page
         public IActionResult Index()
         {
-            return View();
+            //intiializing and creating the list of strings to pass
+            List<string> restList = new List<string>();
+
+            //substantiating the list of strings
+            foreach (Restaurant r in Restaurant.GetRestaurant())
+            {
+                restList.Add($"#{r.Rank}: {r.Name}/n Favorite Dish: {r.FavDish}");
+            }
+
+            return View(restList);
         }
         //controller to view the SubmitNew page
         [HttpGet]
