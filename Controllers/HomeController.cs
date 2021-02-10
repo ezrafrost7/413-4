@@ -27,11 +27,7 @@ namespace _413_4.Controllers
             //substantiating the list of strings
             foreach (Restaurant r in Restaurant.GetRestaurant())
             {
-                restList.Add($"#{r.Rank}: {r.Name} with a favorite dish of: {r.FavDish}");
-                restList.Add($"Address: {r.Address}");
-                restList.Add($"Phone: {r.PhoneNum}");
-                restList.Add($"Website: {r.WebLink}");
-                restList.Add("");
+                restList.Add($"#{r.Rank}: {r.Name} with a favorite dish of: {r.FavDish}<br />Address: {r.Address}<br />Phone: {r.PhoneNum}<br />Website: {r.WebLink}");
             }
 
             return View(restList);
