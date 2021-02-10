@@ -27,29 +27,35 @@ namespace _413_4.Controllers
             //substantiating the list of strings
             foreach (Restaurant r in Restaurant.GetRestaurant())
             {
-                restList.Add($"#{r.Rank}: {r.Name} with a favorite dish of: {r.FavDish}<br />Address: {r.Address}<br />Phone: {r.PhoneNum}<br />Website: {r.WebLink}");
+                //this is to controll if the favorite dish is null
+                string favDish = r.FavDish ?? "It's all tasty!";
+
+                restList.Add($"#{r.Rank}: {r.Name} with a favorite dish of: {favDish}<br />" +
+                    $"Address: {r.Address}<br />Phone: {r.PhoneNum}<br />Website: {r.WebLink}");
             }
 
             return View(restList);
         }
         //controller to view the SubmitNew page
-        [HttpGet]
+        [HttpGet("submit")]
         public IActionResult SubmitNew()
         {
             return View();
         }
         //controller for when the form is submitted
-        [HttpPost]
+        [HttpPost("submit")]
         public IActionResult SubmitNew(RestSubmit restaurant)
         {
             if (ModelState.IsValid)
             {
+
                 TempStorage.AddEntry(restaurant);
-                Response.Redirect("ViewNew");
+                Response.Redirect("viewSubmissions");
             }
             return View();
         }
         //controller to view the page with the submissions
+        [HttpGet("viewSubmissions")]
         public IActionResult ViewNew()
         {
             return View(TempStorage.Entries);

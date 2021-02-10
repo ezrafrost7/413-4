@@ -9,8 +9,14 @@ namespace _413_4.Models
     //this model is for the displaying the top 5 restaurants
     public class Restaurant
     {
+        //making the restaurant rank a "read only" value
+        public Restaurant(int rank)
+        {
+            Rank = rank;
+        }
+
         [Required]
-        public int Rank { get; set; }
+        public int Rank { get; }
         [Required]
         public string Name { get; set; }
         public string FavDish { get; set; } = "It's all tasty!";
@@ -23,9 +29,8 @@ namespace _413_4.Models
         //this is to generate the top restaurants
         public static Restaurant[] GetRestaurant()
         {
-            Restaurant r1 = new Restaurant
+            Restaurant r1 = new Restaurant(1)
             {
-                Rank = 1,
                 Name = "Bombay House",
                 FavDish = "Chicken Tikka Masala",
                 Address = "463 N University Ave, Provo, UT 84601",
@@ -33,18 +38,16 @@ namespace _413_4.Models
                 WebLink = "www.bombayhouse.com/",
             };
 
-            Restaurant r2 = new Restaurant
+            Restaurant r2 = new Restaurant(2)
             {
-                Rank = 2,
                 Name = "Neighborhood Thai Cuisine",
                 Address = "170 W 300 S, Provo, UT 84601",
                 PhoneNum = "(385)223-8169",
                 WebLink = "www.thaineighborcuisine1.com/",
             };
 
-            Restaurant r3 = new Restaurant
+            Restaurant r3 = new Restaurant(3)
             {
-                Rank = 3,
                 Name = "Don Joaquin's Street Tacos",
                 FavDish = "Carne Asada Burrito",
                 Address = "150 W 1230 N St, Provo, UT 84604",
@@ -52,18 +55,16 @@ namespace _413_4.Models
                 
             };
 
-            Restaurant r4 = new Restaurant
+            Restaurant r4 = new Restaurant(4)
             {
-                Rank = 4,
                 Name = "J-Dawgz",
                 Address = "858 700 E, Provo, UT 84606",
                 PhoneNum = "(801)373-3294",
                 WebLink = "www.jdawgs.com/",
             };
 
-            Restaurant r5 = new Restaurant
+            Restaurant r5 = new Restaurant(5)
             {
-                Rank = 5,
                 Name = "Brick Oven",
                 FavDish = "Margherita Pizza",
                 Address = "111 E 800 N, Provo, UT 84606",
@@ -79,9 +80,11 @@ namespace _413_4.Models
     //this model is for the form submission and display
     public class RestSubmit
     {
+        [Required(ErrorMessage = "Your name is a required field")]
         public string PersonName { get; set; }
+        [Required(ErrorMessage = "Restaurant name is a required field.")]
         public string RestName { get; set; }
-        public string FavDish { get; set; } = "It's all tasty!";
+        public string FavDish { get; set; }
         [Phone(ErrorMessage = "Please input phone with valid format")]
         public string? RestPhone { get; set; }
     }
